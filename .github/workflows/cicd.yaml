@@ -28,8 +28,13 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
+      - name: Terraform Format
+        # This will format all .tf files recursively
+        run: terraform fmt -recursive
+
       - name: Terraform Format Check
-        run: terraform fmt -check
+        # Optional: will fail if someone pushes unformatted code
+        run: terraform fmt -check -recursive
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
